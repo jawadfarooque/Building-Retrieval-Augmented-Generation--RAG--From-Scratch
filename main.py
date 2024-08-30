@@ -4,12 +4,10 @@ import uuid
 import torch
 import numpy as np
 import json
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
+from langchain.prompts import ChatPromptTemplate
+from langchain_community.chat_models import ChatOpenAI
 import os
 
-
-# YOUR KEY HERE
 
 def chunking(directory_path, tokenizer, chunk_size, para_seperator=" /n /n", separator=" "):
     # tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -192,7 +190,8 @@ if __name__ == "__main__":
     para_seperator = " /n /n"
     separator = " "
     top_k = 2
-    openai_model = ChatOpenAI(model="gpt-3.5-turbo")
+    # IF YOU HAVE YOUR GPT API KEY THEN INSER HERE AND UNCOMMENT THIS LINE AND LAST 2 LINES FOR GENERATING RESPONSE USING GPT
+    #openai_model = ChatOpenAI(model="gpt-3.5-turbo", openai_api_key="YOUR API KEY")
 
     # creating document store with chunk id, doc_id, text
     documents = chunking(directory_path, tokenizer, chunk_size, para_seperator, separator)
@@ -220,11 +219,5 @@ if __name__ == "__main__":
     # print(relavent_text["text"])
 
 # Uncomment if you have api key
-response = generate_llm_response(openai_model, query, relavent_text)
-print(response)
-
-
-
-
-
-
+# response = generate_llm_response(openai_model, query, relavent_text)
+# print(response)
